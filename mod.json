@@ -1,0 +1,53 @@
+{
+	"geode": "4.7.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "alphalaneous.next_key_when",
+	"name": "Next Key When?",
+	"version": "v1.0.0",
+	"developer": "Alphalaneous",
+	"description": "Shows how many orbs you have towards your next demon key!",
+	"dependencies": {
+		"capeling.garage-stats-menu" : ">=v1.0.1",
+		"geode.node-ids" : ">=v1.21.1",
+		"cvolton.misc_bugfixes": ">=v1.7.0"
+	},
+	"tags": [
+		"enhancement", "utility", "online"
+	],
+	"links": {
+		"homepage": "https://linktr.ee/Alphalaneous",
+		"source": "https://github.com/Alphalaneous/NextKeyWhen",
+		"community": "https://discord.gg/Txn2CA5dHF"
+	},
+	"settings": {
+		"show-on-garage": {
+			"type": "bool",
+			"name": "Show on Icon Kit",
+			"description": "Show the count in the Icon Kit",
+			"default": true
+		},
+		"show-on-pause": {
+			"type": "bool",
+			"name": "Show on Pause",
+			"description": "Show the count on the Pause Menu",
+			"default": true
+		},
+		"show-on-orbs": {
+			"type": "bool",
+			"name": "Show on Orb Increase",
+			"description": "Show the count when you gain Orbs",
+			"default": true
+		},
+		"show-on-end-screen": {
+			"type": "bool",
+			"name": "Show on End Screen",
+			"description": "Show the count on the End Screen",
+			"default": true
+		}
+	}
+}
