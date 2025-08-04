@@ -12,6 +12,11 @@ int calculateOrbsToNextKey() {
 }
 
 class $modify(MyEndLevelLayer, EndLevelLayer) {
+
+	static void onModify(auto& self) {
+		(void) self.setHookPriorityPost("EndLevelLayer::showLayer", Priority::Last);
+	}
+
 	void showLayer(bool p0) {
 		EndLevelLayer::showLayer(p0);
 
