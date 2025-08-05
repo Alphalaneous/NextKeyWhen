@@ -46,15 +46,16 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 		std::vector<Ref<CCLabelBMFont>> nodesToMove;
 
 		for (CCNode* child : CCArrayExt<CCNode*>(m_mainLayer->getChildren())) {
+			if (child->getID() == "end-text") continue;
+
 			if (CCLabelBMFont* label = typeinfo_cast<CCLabelBMFont*>(child)) {
-				// skip non-goldfont labels, especially end-text
-				// otherwise it causes weird results like https://discord.com/channels/911701438269386882/911702535373475870/1402125928141684778
-				if (label->getID() == "end-text") continue; // arguably i could move this to be outside the typeinfocast but it's here for readability
 				if (label->getPositionX() == winSize.width/2 && std::string(label->getFntFile()) == "goldFont.fnt") {
 					nodesToMove.push_back(label);
 				}
 			}
 		}
+
+		std::reverse(nodesToMove.begin(), nodesToMove.end());
 
 		if (nodesToMove.size() > 3) {
 			layout->setAutoScale(true);
