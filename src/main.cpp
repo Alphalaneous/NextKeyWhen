@@ -28,8 +28,9 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 
 		CCLabelBMFont* counter = CCLabelBMFont::create(fmt::format("Key: {}/500", calculateOrbsToNextKey()).c_str(), "goldFont.fnt");
 		counter->setScale(0.8f);
-		counter->setAnchorPoint({1.f, 0.f});
-		counter->setPosition({0, 0});
+		// counter->setAnchorPoint({.5f, .5f}); // unneeded, allows for consistent anchor point and x-position compared to vanilla gold labels
+		// counter->setPosition({0, 0}); // unneeded, allows for consistent anchor point and x-position compared to vanilla gold labels
+		counter->setID("orb-counter"_spr);
 
 		CCNode* labelContainer = CCNode::create();
 		labelContainer->setPosition({winSize.width/2, winSize.height/2 + 8});
@@ -46,7 +47,10 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 
 		for (CCNode* child : CCArrayExt<CCNode*>(m_mainLayer->getChildren())) {
 			if (CCLabelBMFont* label = typeinfo_cast<CCLabelBMFont*>(child)) {
-				if (label->getPositionX() == winSize.width/2) {
+				// skip non-goldfont labels, especially end-text
+				// otherwise it causes weird results like https://discord.com/channels/911701438269386882/911702535373475870/1402125928141684778
+				if (label->getID() == "end-text") continue; // arguably i could move this to be outside the typeinfocast but it's here for readability
+				if (label->getPositionX() == winSize.width/2 && std::string(label->getFntFile()) == "goldFont.fnt") {
 					nodesToMove.push_back(label);
 				}
 			}
