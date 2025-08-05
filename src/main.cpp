@@ -87,7 +87,8 @@ class $modify(MyCurrencyRewardLayer, CurrencyRewardLayer) {
 				counter->setScale(0.3f);
 				counter->setAnchorPoint({1.f, 1.f});
 				counter->setPosition({0, -m_orbsLabel->getScaledContentHeight() + 1});
-				
+				counter->setID("orb-counter"_spr);
+
 				m_mainNode->addChild(counter);
 			}
 		}
@@ -111,6 +112,7 @@ class $modify(MyPauseLayer, PauseLayer) {
 			counter->setAnchorPoint({1.f, 0.5f});
 			counter->setPosition({normalModeLabel->getPositionX() + 170, normalModeLabel->getPositionY()});
 			counter->setColor({45, 255, 255});
+			counter->setID("orb-counter"_spr);
 
 			addChild(counter);
 		}
