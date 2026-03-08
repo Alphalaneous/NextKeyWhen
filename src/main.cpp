@@ -28,49 +28,13 @@ class $modify(MyEndLevelLayer, EndLevelLayer) {
 
 		CCLabelBMFont* counter = CCLabelBMFont::create(fmt::format("Key: {}/500", calculateOrbsToNextKey()).c_str(), "goldFont.fnt");
 		counter->setScale(0.8f);
-		// counter->setAnchorPoint({.5f, .5f}); // unneeded, allows for consistent anchor point and x-position compared to vanilla gold labels
-		// counter->setPosition({0, 0}); // unneeded, allows for consistent anchor point and x-position compared to vanilla gold labels
 		counter->setID("orb-counter"_spr);
 
-		CCNode* labelContainer = CCNode::create();
-		labelContainer->setPosition({winSize.width/2, winSize.height/2 + 8});
-		labelContainer->setContentSize({200, 90});
-		labelContainer->setAnchorPoint({0.5f, 0.5f});
-		labelContainer->setID("label-container"_spr);
-
-		ColumnLayout* layout = ColumnLayout::create();
-		layout->setGap(3);
-		layout->setAutoScale(false);
-		labelContainer->setLayout(layout);
-
-		std::vector<Ref<CCLabelBMFont>> nodesToMove;
-
-		for (CCNode* child : CCArrayExt<CCNode*>(m_mainLayer->getChildren())) {
-			if (child->getID() == "end-text") continue;
-
-			if (CCLabelBMFont* label = typeinfo_cast<CCLabelBMFont*>(child)) {
-				if (label->getPositionX() == winSize.width/2 && std::string(label->getFntFile()) == "goldFont.fnt") {
-					nodesToMove.push_back(label);
-				}
-			}
-		}
-
-		std::reverse(nodesToMove.begin(), nodesToMove.end());
-
-		if (nodesToMove.size() > 3) {
-			layout->setAutoScale(true);
-		}
-
-		for (auto node : nodesToMove) {
-			node->removeFromParentAndCleanup(false);
-			labelContainer->addChild(node);
-		}
+		CCNode* labelContainer = m_mainLayer->getChildByID("summary-container");
 
 		labelContainer->addChild(counter);
 
 		labelContainer->updateLayout();
-		
-		m_mainLayer->addChild(labelContainer);
 	}
 };
 
@@ -118,8 +82,6 @@ class $modify(MyPauseLayer, PauseLayer) {
 			addChild(counter);
 		}
 	}
-
-
 };
 
 class $modify(GJGarageLayer) {

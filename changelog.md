@@ -1,3 +1,6 @@
+# 1.0.4
+- Fix End Screen
+
 # 1.0.3
 - 2.2081 Support
 
